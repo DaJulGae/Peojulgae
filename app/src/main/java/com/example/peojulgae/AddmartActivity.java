@@ -40,6 +40,7 @@ public class AddmartActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        // 새 계정 테스트
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addmart);
 
