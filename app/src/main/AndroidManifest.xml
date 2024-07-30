@@ -68,6 +68,8 @@
         <activity android:name=".FoodCategoryActivity"></activity>
         <activity android:name=".MartSpecific"></activity>
         <activity android:name=".CancelPayActivity"></activity>
+        <activity android:name=".HomeFragmentActivity"></activity>
+        <activity android:name=".MapActivity"></activity>
 
 
         <meta-data
