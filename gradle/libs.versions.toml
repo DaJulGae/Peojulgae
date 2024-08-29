@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.1"
+agp = "8.5.2"
 android = "2.9.5"
 androidVersion = "2.6.0"
 appcompatVersion = "1.3.1"
