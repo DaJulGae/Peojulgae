@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/store_display"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BaloonActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:focusable="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/image_frame"
+                android:layout_width="match_parent"
+                android:layout_height="215dp" >
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/round_corner"
+                    android:clipToOutline="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/gggoMain">
+
+                </ImageView>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <TextView
+                    android:id="@+id/store_dtext01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_weight="0.9"
+                    android:background="@null"
+                    android:layout_marginStart="12dp"
+                    android:gravity="center_vertical"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:text="GGgo"
+                    android:textStyle="bold"
+                    android:textSize="19sp"/>
+
+                <TextView
+                    android:id="@+id/store_dtext02"
+                    android:layout_width="117dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:drawablePadding="4dp"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:drawableStart="@drawable/drawble_resize_heart"
+                    android:inputType="text"
+                    android:text="4.5 (52)"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/store_dtext03"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:background="@null"
+                android:inputType="text"
+                android:layout_marginStart="13dp"
+                android:text="It's time for livepan GGgo"
+                android:textStyle="italic"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/store_dline01"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/grey"
+                android:text="TextView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/store_dtext04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="menu"
+                    android:textSize="20sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/store_dtext05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="end"
+                    android:layout_marginEnd="18dp"
+                    android:text="단품 메뉴"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/store_dline02"
+                android:layout_width="100dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="end"
+                android:background="@color/grey"
+                android:text="TextView" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="18dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardView01"
+                        android:layout_width="160dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="15dp" >
+
+                        <ImageView
+                            android:id="@+id/nicerice"
+                            android:layout_width="160dp"
+                            android:layout_height="150dp"
+                            android:clipToOutline="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/nicerice">
+
+
+                        </ImageView>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/store_dtext06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="나이스 라이스"
+                            android:textStyle="bold"
+                            android:textSize="16sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/store_dtext07"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="5,000원" />
+
+
+                            <TextView
+                                android:id="@+id/store_dtext08"
+                                android:layout_width="wrap_content"
+                                android:layout_height="27dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="10%"
+                                android:textColor="@color/red"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/store_dtext09"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="결제금액 : " />
+
+                            <TextView
+                                android:id="@+id/store_dtext10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="4,500원" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardView02"
+                        android:layout_width="160dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="15dp" >
+
+                        <ImageView
+                            android:id="@+id/noodledoodle"
+                            android:layout_width="160dp"
+                            android:layout_height="150dp"
+                            android:clipToOutline="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/noodledoodle">
+
+
+                        </ImageView>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/store_dtext12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="누들두들"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/store_dtext13"
+                                android:layout_width="151dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="5,000원" />
+
+
+                            <TextView
+                                android:id="@+id/store_dtext14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="27dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="10%"
+                                android:textColor="@color/red"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/store_dtext15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="결제금액 : " />
+
+                            <TextView
+                                android:id="@+id/store_dtext16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="4,500원" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="18dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardView03"
+                        android:layout_width="160dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="15dp" >
+
+                        <ImageView
+                            android:id="@+id/meatmayo"
+                            android:layout_width="160dp"
+                            android:layout_height="150dp"
+                            android:clipToOutline="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/meatmayo">
+
+
+                        </ImageView>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/store_dtext19"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="고기마요"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/store_dtext20"
+                                android:layout_width="151dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="5,000원" />
+
+
+                            <TextView
+                                android:id="@+id/store_dtext21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="27dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="10%"
+                                android:textColor="@color/red"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/store_dtext22"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="결제금액 : " />
+
+                            <TextView
+                                android:id="@+id/store_dtext23"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="4,500원" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:layout_marginTop="18dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:orientation="horizontal">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardView04"
+                        android:layout_width="160dp"
+                        android:layout_height="150dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardCornerRadius="15dp" >
+
+                        <ImageView
+                            android:id="@+id/spicypork"
+                            android:layout_width="160dp"
+                            android:layout_height="150dp"
+                            android:clipToOutline="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/spicypork">
+
+
+                        </ImageView>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/store_dtext25"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:inputType="text"
+                            android:text="제육볶음마요"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+
+                            <TextView
+                                android:id="@+id/store_dtext26"
+                                android:layout_width="151dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="5,000원" />
+
+
+                            <TextView
+                                android:id="@+id/store_dtext27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="27dp"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="10%"
+                                android:textColor="@color/red"/>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/store_dtext28"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="결제금액 : " />
+
+                            <TextView
+                                android:id="@+id/store_dtext29"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:ems="10"
+                                android:inputType="text"
+                                android:text="4,500원" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/store_dline04"
+                android:layout_width="100dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="end"
+                android:background="@color/grey"
+                android:text="TextView" />
+
+            <TextView
+                android:id="@+id/store_dline05"
+                android:layout_width="100dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="end"
+                android:background="@color/grey"
+                android:text="TextView" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"/>
+
+            </FrameLayout>
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

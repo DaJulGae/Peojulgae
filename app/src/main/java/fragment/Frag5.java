@@ -25,7 +25,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.peojulgae.BaloonActivity;
 import com.example.peojulgae.R;
-import com.example.peojulgae.FoodCategoryActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -199,12 +198,19 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
                 .setRank(1));
         labelMap.put("specificMarker1", marker1);
 
-        // 두번째 마커 찍기..되겠지..?
+        // 사당초등학교
         LatLng position2 = LatLng.from(37.4735357, 126.9737232); // Coordinates for "사당초등학교"
         Label marker2 = layer.addLabel(LabelOptions.from("specificMarker2", position2)
                 .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
                 .setRank(1));
         labelMap.put("specificMarker2", marker2);
+
+        // 지지고
+        LatLng position3 = LatLng.from(37.587539, 127.097296); // 새로운 좌표
+        Label marker3 = layer.addLabel(LabelOptions.from("specificMarker3", position3)
+                .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
+                .setRank(1));
+        labelMap.put("specificMarker3", marker3);  // 새로운 마커를 맵에 추가
     }
 
     private void showMarkerInfoDialog(String title, String message, String labelId) {
@@ -235,6 +241,9 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
                         break;
                     case "specificMarker2":
                         markerInfo = "사당초등학교";
+                        break;
+                    case "specificMarker3":  // 새로운 마커 클릭 처리
+                        markerInfo = "지지고";  // 새로운 좌표에 대한 설명
                         break;
                 }
                 showMarkerInfoDialog("Marker Info", markerInfo, labelId);

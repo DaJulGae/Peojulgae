@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 //test
-public class BaloonActivity extends AppCompatActivity {
+public class BaloonActivity extends AppCompatActivity { // 가나 점보 돈까스
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
