@@ -10,9 +10,8 @@ public class GGgoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gggo_display); // 주어진 XML 레이아웃 파일을 설정
+        setContentView(R.layout.gggo_display);
 
-        // ImageView에 대한 참조를 연결합니다.
         ImageView nicericeImageView = findViewById(R.id.nicerice);
         ImageView noodledoodleImageView = findViewById(R.id.noodledoodle);
         ImageView meatmayoImageView = findViewById(R.id.meatmayo);
@@ -22,9 +21,13 @@ public class GGgoActivity extends AppCompatActivity {
         nicericeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int price = 5000;
+                int discountedPrice = calculateDiscount(price);
                 Intent intent = new Intent(GGgoActivity.this, FoodListActivity.class);
-                intent.putExtra("image_resource", R.drawable.nicerice); // 이미지 리소스 전달
-                intent.putExtra("food_name", "나이스 라이스"); // 음식 이름 전달
+                intent.putExtra("image_resource", R.drawable.nicerice);
+                intent.putExtra("food_name", "나이스 라이스");
+                intent.putExtra("food_price", price + "원");
+                intent.putExtra("discounted_price", discountedPrice + "원");  // 할인된 가격 전달
                 startActivity(intent);
             }
         });
@@ -33,9 +36,13 @@ public class GGgoActivity extends AppCompatActivity {
         noodledoodleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int price = 5000;
+                int discountedPrice = calculateDiscount(price);
                 Intent intent = new Intent(GGgoActivity.this, FoodListActivity.class);
-                intent.putExtra("image_resource", R.drawable.noodledoodle); // 이미지 리소스 전달
-                intent.putExtra("food_name", "누들두들"); // 음식 이름 전달
+                intent.putExtra("image_resource", R.drawable.noodledoodle);
+                intent.putExtra("food_name", "누들두들");
+                intent.putExtra("food_price", price + "원");
+                intent.putExtra("discounted_price", discountedPrice + "원");  // 할인된 가격 전달
                 startActivity(intent);
             }
         });
@@ -44,9 +51,13 @@ public class GGgoActivity extends AppCompatActivity {
         meatmayoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int price = 5000;
+                int discountedPrice = calculateDiscount(price);
                 Intent intent = new Intent(GGgoActivity.this, FoodListActivity.class);
-                intent.putExtra("image_resource", R.drawable.meatmayo); // 이미지 리소스 전달
-                intent.putExtra("food_name", "고기마요"); // 음식 이름 전달
+                intent.putExtra("image_resource", R.drawable.meatmayo);
+                intent.putExtra("food_name", "고기마요");
+                intent.putExtra("food_price", price + "원");
+                intent.putExtra("discounted_price", discountedPrice + "원");  // 할인된 가격 전달
                 startActivity(intent);
             }
         });
@@ -55,11 +66,20 @@ public class GGgoActivity extends AppCompatActivity {
         spicyporkImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int price = 5000;
+                int discountedPrice = calculateDiscount(price);
                 Intent intent = new Intent(GGgoActivity.this, FoodListActivity.class);
-                intent.putExtra("image_resource", R.drawable.spicypork); // 이미지 리소스 전달
-                intent.putExtra("food_name", "제육볶음마요"); // 음식 이름 전달
+                intent.putExtra("image_resource", R.drawable.spicypork);
+                intent.putExtra("food_name", "제육볶음마요");
+                intent.putExtra("food_price", price + "원");
+                intent.putExtra("discounted_price", discountedPrice + "원");  // 할인된 가격 전달
                 startActivity(intent);
             }
         });
+    }
+
+    // 10% 할인 계산 함수
+    private int calculateDiscount(int price) {
+        return price - (price / 10);
     }
 }
