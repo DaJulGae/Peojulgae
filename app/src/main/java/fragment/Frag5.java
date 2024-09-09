@@ -24,6 +24,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.example.peojulgae.BaloonActivity;
+import com.example.peojulgae.GGgoActivity;
 import com.example.peojulgae.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -213,42 +214,39 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
         labelMap.put("specificMarker3", marker3);  // 새로운 마커를 맵에 추가
     }
 
-    private void showMarkerInfoDialog(String title, String message, String labelId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
-        builder.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", null)
-                .setNeutralButton("Open Baloon Layout", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(requireActivity(), BaloonActivity.class);
-                        intent.putExtra("labelId", labelId);
-                        startActivity(intent);
-                    }
-                })
-                .show();
-    }
-
     @Override
     public void onLabelClicked(KakaoMap kakaoMap, LabelLayer layer, Label label) {
         for (Map.Entry<String, Label> entry : labelMap.entrySet()) {
             if (entry.getValue().equals(label)) {
-                String markerInfo = "";
                 String labelId = entry.getKey();
                 switch (labelId) {
                     case "specificMarker1":
-                        markerInfo = "가나 점보 돈까스";
+                        // 가나 점보 돈까스를 클릭했을 때 BaloonActivity 실행
+                        startBaloonActivity(labelId);
                         break;
-                    case "specificMarker2":
-                        markerInfo = "사당초등학교";
+                    case "specificMarker3":
+                        // 지지고를 클릭했을 때 GGgoActivity 실행
+                        startGGgoActivity(labelId);
                         break;
-                    case "specificMarker3":  // 새로운 마커 클릭 처리
-                        markerInfo = "지지고";  // 새로운 좌표에 대한 설명
+                    default:
                         break;
                 }
-                showMarkerInfoDialog("Marker Info", markerInfo, labelId);
                 break;
             }
         }
+    }
+
+    // BaloonActivity를 실행하는 메서드
+    private void startBaloonActivity(String labelId) {
+        Intent intent = new Intent(requireActivity(), BaloonActivity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
+    }
+
+    // GGgoActivity를 실행하는 메서드
+    private void startGGgoActivity(String labelId) {
+        Intent intent = new Intent(requireActivity(), GGgoActivity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
     }
 }

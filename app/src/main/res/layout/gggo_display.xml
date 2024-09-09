@@ -37,7 +37,7 @@
                     android:background="@drawable/round_corner"
                     android:clipToOutline="true"
                     android:scaleType="fitXY"
-                    android:src="@drawable/gggoMain">
+                    android:src="@drawable/gggomain">
 
                 </ImageView>
             </FrameLayout>
