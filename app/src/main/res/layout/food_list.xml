@@ -141,7 +141,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:textSize="15sp"
-                                    android:text="할인된 금액 :" />
+                                    android:text="할인된 최종 결제금액 :" />
 
                                 <TextView
                                     android:id="@+id/food_ltext08"
