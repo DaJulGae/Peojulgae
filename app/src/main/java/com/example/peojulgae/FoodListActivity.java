@@ -18,8 +18,8 @@ public class FoodListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int imageResource = intent.getIntExtra("image_resource", R.drawable.store_gana);
         String foodName = intent.getStringExtra("food_name");
-        String foodPrice = intent.getStringExtra("food_price");  // 할인되기 전 가격
-        String discountedPrice = intent.getStringExtra("discounted_price");  // 할인된 가격
+        String foodPrice = intent.getStringExtra("food_price");
+        String discountedPrice = intent.getStringExtra("discounted_price");
 
         // ImageView 설정
         ImageView imageView = findViewById(R.id.imageView);
@@ -35,6 +35,10 @@ public class FoodListActivity extends AppCompatActivity {
         TextView discountedPriceTextView = findViewById(R.id.food_ltext08);
         discountedPriceTextView.setText(discountedPrice);
 
+        // 할인된 금액 계산
+        int originalPrice = Integer.parseInt(foodPrice.replace("원", "").replace(",", "").trim());
+        int discountedPriceValue = Integer.parseInt(discountedPrice.replace("원", "").replace(",", "").trim());
+
         // food_lbutton04 버튼 찾기
         Button TakePayButton = findViewById(R.id.food_lbutton04);
         Button HavePayButton = findViewById(R.id.food_lbutton05);
@@ -43,9 +47,10 @@ public class FoodListActivity extends AppCompatActivity {
         TakePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TakePayActivity 시작, 할인 전의 가격을 전달
+                // TakePayActivity로 이동하고 가격 정보 전달
                 Intent intent1 = new Intent(FoodListActivity.this, TakePayActivity.class);
-                intent1.putExtra("food_price", Integer.parseInt(foodPrice.replaceAll("[^0-9]", ""))); // 할인 전 가격을 전달
+                intent1.putExtra("original_price", originalPrice);
+                intent1.putExtra("discounted_price", discountedPriceValue);
                 startActivity(intent1);
             }
         });
