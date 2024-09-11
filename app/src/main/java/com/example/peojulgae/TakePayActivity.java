@@ -22,6 +22,7 @@ import kr.co.bootpay.android.models.BootUser;
 import kr.co.bootpay.android.models.Payload;
 
 public class TakePayActivity extends AppCompatActivity {
+    private int originalPrice;
     private int discountedPrice;
 
     @Override
@@ -29,52 +30,59 @@ public class TakePayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.take_pay);
 
-        // FoodListActivity에서 전달된 할인된 가격 받기
+        // Intent에서 원래 가격과 할인된 가격을 가져옴
         Intent intent = getIntent();
-        discountedPrice = intent.getIntExtra("discounted_price", 0); // 할인된 가격 받아오기
+        originalPrice = intent.getIntExtra("original_price", 0);
+        discountedPrice = intent.getIntExtra("discounted_price", 0);
+        int discountAmount = originalPrice - discountedPrice;
 
-        // TextView에 할인된 가격 표시
-        TextView priceTextView = findViewById(R.id.take_text22); // 결제 금액 표시할 TextView ID 사용
-        priceTextView.setText(String.format("%,d 원", discountedPrice)); // 금액 표시 형식
+        // UI에 가격 정보 반영
+        TextView discountTextView = findViewById(R.id.take_text27);
+        discountTextView.setText(String.format("-%,d원", discountAmount));
 
-        // 결제 버튼 클릭 리스너 설정
-        Button testButton = findViewById(R.id.take_pay_button);
-        testButton.setOnClickListener(new View.OnClickListener() {
+        TextView originalPriceTextView = findViewById(R.id.take_text22);
+        originalPriceTextView.setText(String.format("%,d 원", originalPrice));
+
+        TextView totalTextView = findViewById(R.id.take_text29);
+        totalTextView.setText(String.format("%,d 원", discountedPrice));
+
+        // 결제 버튼을 클릭하면 Bootpay 결제 시작
+        Button payButton = findViewById(R.id.take_pay_button);
+        payButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentTest(v); // 결제 수행
+                startBootpayPayment();
             }
         });
     }
 
-    public void PaymentTest(View v) {
-        BootUser user = new BootUser().setPhone("010-9135-3534"); // 구매자 정보
+    private void startBootpayPayment() {
+        BootUser user = new BootUser().setPhone("010-1234-5678"); // 사용자 정보 설정
 
         BootExtra extra = new BootExtra()
-                .setCardQuota("0,2,3"); // 일시불, 2개월, 3개월 할부 허용
+                .setCardQuota("0,2,3"); // 할부 설정 (일시불, 2개월, 3개월)
 
         List<BootItem> items = new ArrayList<>();
         BootItem item = new BootItem()
-                .setId("item_1234")  // 상품 고유 ID
-                .setName("결제 아이템")  // 상품 이름
-                .setQty(1)  // 상품 수량
-                .setPrice((double) discountedPrice); // 할인된 금액
+                .setId("item_1234") // 고유한 상품 ID 추가
+                .setName("결제 아이템")
+                .setQty(1) // 수량 추가
+                .setPrice((double) discountedPrice); // 할인된 금액 설정
         items.add(item);
 
         Payload payload = new Payload();
         payload.setApplicationId("5b8f6a4d396fa665fdc2b5e8")
-                .setOrderName("Peojulgae 앱 결제")
+                .setOrderName("주문 테스트")
                 .setOrderId("1234")
-                .setPrice((double) discountedPrice) // 할인된 금액 설정
+                .setPrice((double) discountedPrice) // 할인된 금액 사용
                 .setUser(user)
                 .setExtra(extra)
-                .setItems(items);  // BootItem 추가
+                .setItems(items);
 
-        Map<String, Object> map = new HashMap<>();
-        map.put("1", "abcdef");
-        map.put("2", "abcdef55");
-        map.put("3", 1234);
-        payload.setMetadata(map);
+        Map<String, Object> metadata = new HashMap<>();
+        metadata.put("1", "메타데이터1");
+        metadata.put("2", "메타데이터2");
+        payload.setMetadata(metadata);
 
         Bootpay.init(getSupportFragmentManager(), getApplicationContext())
                 .setPayload(payload)
@@ -103,12 +111,12 @@ public class TakePayActivity extends AppCompatActivity {
                     @Override
                     public boolean onConfirm(String data) {
                         Log.d("bootpay", "confirm: " + data);
-                        return true; // 재고가 있어서 결제를 진행하려 할 때 true 반환
+                        return true; // 결제를 진행할 때 true 반환
                     }
 
                     @Override
                     public void onDone(String data) {
-                        Log.d("done", data);
+                        Log.d("bootpay", "done: " + data);
                     }
                 }).requestPayment();
     }
