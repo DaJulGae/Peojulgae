@@ -74,6 +74,8 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
             startLocationUpdates();
             addMarkers(kakaoMap);
 
+            trackingManager.stopTracking(); // 트래킹을 중지하여 자동 복귀를 막음
+
             // Set the label click listener
             kakaoMap.setOnLabelClickListener(Frag5.this);
         }
