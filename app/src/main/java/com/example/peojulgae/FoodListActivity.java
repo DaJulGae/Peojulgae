@@ -43,7 +43,7 @@ public class FoodListActivity extends AppCompatActivity {
         Button TakePayButton = findViewById(R.id.food_lbutton04);
         Button HavePayButton = findViewById(R.id.food_lbutton05);
 
-        // food_lbutton04 버튼 클릭 리스너 설정
+        // food_lbutton04 버튼 클릭 리스너 설정 (TakePayActivity로 이동)
         TakePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,11 +55,14 @@ public class FoodListActivity extends AppCompatActivity {
             }
         });
 
+        // HavePayButton 클릭 리스너 설정 (HavePayActivity로 이동)
         HavePayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // HavePayActivity 시작
+                // HavePayActivity로 이동하고 가격 정보 전달
                 Intent intent2 = new Intent(FoodListActivity.this, HavePayActivity.class);
+                intent2.putExtra("original_price", originalPrice);
+                intent2.putExtra("discounted_price", discountedPriceValue);
                 startActivity(intent2);
             }
         });
