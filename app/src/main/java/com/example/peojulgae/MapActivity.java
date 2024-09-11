@@ -67,7 +67,8 @@ public class MapActivity extends AppCompatActivity implements KakaoMap.OnLabelCl
             startLocationUpdates();
             addMarkers(kakaoMap);
 
-            // Set the label click listener
+            trackingManager.stopTracking(); // 트래킹을 중지하여 자동 복귀를 막음
+
             kakaoMap.setOnLabelClickListener(MapActivity.this);
         }
 
@@ -191,47 +192,68 @@ public class MapActivity extends AppCompatActivity implements KakaoMap.OnLabelCl
                 .setRank(1));
         labelMap.put("specificMarker1", marker1);
 
-        // 두번째 마커 찍기
-        LatLng position2 = LatLng.from(37.4735357, 126.9737232); // Coordinates for "사당초등학교"
+        // 사당초등학교
+        LatLng position2 = LatLng.from(37.4735357, 126.9737232); // 사당초등학교
         Label marker2 = layer.addLabel(LabelOptions.from("specificMarker2", position2)
                 .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
                 .setRank(1));
         labelMap.put("specificMarker2", marker2);
-    }
 
-    private void showMarkerInfoDialog(String title, String message, String labelId) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(title)
-                .setMessage(message)
-                .setPositiveButton("OK", null)
-                .setNeutralButton("Open Baloon Layout", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(MapActivity.this, BaloonActivity.class);
-                        intent.putExtra("labelId", labelId);
-                        startActivity(intent);
-                    }
-                })
-                .show();
+        // 지지고
+        LatLng position3 = LatLng.from(37.587539, 127.097296); // 지지고
+        Label marker3 = layer.addLabel(LabelOptions.from("specificMarker3", position3)
+                .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
+                .setRank(1));
+        labelMap.put("specificMarker3", marker3);
+
+        // 알촌
+        LatLng position4 = LatLng.from(37.587822, 127.097018); // 알촌
+        Label marker4 = layer.addLabel(LabelOptions.from("specificMarker4", position4)
+                .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
+                .setRank(1));
+        labelMap.put("specificMarker4", marker4);
     }
 
     @Override
     public void onLabelClicked(KakaoMap kakaoMap, LabelLayer layer, Label label) {
         for (Map.Entry<String, Label> entry : labelMap.entrySet()) {
             if (entry.getValue().equals(label)) {
-                String markerInfo = "";
                 String labelId = entry.getKey();
                 switch (labelId) {
                     case "specificMarker1":
-                        markerInfo = "가나 점보 돈까스";
+                        startBaloonActivity(labelId);
                         break;
-                    case "specificMarker2":
-                        markerInfo = "사당초등학교";
+                    case "specificMarker3":
+                        startGGgoActivity(labelId);
+                        break;
+                    case "specificMarker4":
+                        // 지지고를 클릭했을 때 alchonActivty 실행
+                        startalchonActivity(labelId);
+                    default:
                         break;
                 }
-                showMarkerInfoDialog("Marker Info", markerInfo, labelId);
                 break;
             }
         }
+    }
+
+    // BaloonActivity를 실행하는 메서드
+    private void startBaloonActivity(String labelId) {
+        Intent intent = new Intent(this, BaloonActivity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
+    }
+
+    // GGgoActivity를 실행하는 메서드
+    private void startGGgoActivity(String labelId) {
+        Intent intent = new Intent(this, GGgoActivity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
+    }
+    // alchon_activity를 실행하는 메서드
+    private void startalchonActivity(String labelId) {
+        Intent intent = new Intent(this, alchon_activity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
     }
 }
