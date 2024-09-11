@@ -26,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.example.peojulgae.BaloonActivity;
 import com.example.peojulgae.GGgoActivity;
 import com.example.peojulgae.R;
+import com.example.peojulgae.alchon_activity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -207,11 +208,18 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
         labelMap.put("specificMarker2", marker2);
 
         // 지지고
-        LatLng position3 = LatLng.from(37.587539, 127.097296); // 새로운 좌표
+        LatLng position3 = LatLng.from(37.587539, 127.097296); // 지지고
         Label marker3 = layer.addLabel(LabelOptions.from("specificMarker3", position3)
                 .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
                 .setRank(1));
-        labelMap.put("specificMarker3", marker3);  // 새로운 마커를 맵에 추가
+        labelMap.put("specificMarker3", marker3);
+
+        // 새로 추가된 좌표에 마커 추가
+        LatLng position4 = LatLng.from(37.587822, 127.097018); // 알촌
+        Label marker4 = layer.addLabel(LabelOptions.from("specificMarker4", position4)
+                .setStyles(LabelStyle.from(R.drawable.red_marker).setAnchorPoint(0.5f, 0.5f))
+                .setRank(1));
+        labelMap.put("specificMarker4", marker4);
     }
 
     @Override
@@ -228,6 +236,9 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
                         // 지지고를 클릭했을 때 GGgoActivity 실행
                         startGGgoActivity(labelId);
                         break;
+                    case "specificMarker4":
+                        // 지지고를 클릭했을 때 alchonActivty 실행
+                        startalchonActivity(labelId);
                     default:
                         break;
                 }
@@ -246,6 +257,12 @@ public class Frag5 extends Fragment implements KakaoMap.OnLabelClickListener {
     // GGgoActivity를 실행하는 메서드
     private void startGGgoActivity(String labelId) {
         Intent intent = new Intent(requireActivity(), GGgoActivity.class);
+        intent.putExtra("labelId", labelId);
+        startActivity(intent);
+    }
+    // alchon_activity를 실행하는 메서드
+    private void startalchonActivity(String labelId) {
+        Intent intent = new Intent(requireActivity(), alchon_activity.class);
         intent.putExtra("labelId", labelId);
         startActivity(intent);
     }

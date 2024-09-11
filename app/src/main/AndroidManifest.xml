@@ -70,6 +70,7 @@
         <activity android:name=".CancelPayActivity"></activity>
         <activity android:name=".MapActivity"></activity>
         <activity android:name=".GGgoActivity"></activity>
+        <activity android:name=".alchon_activity"></activity>
 
 
         <meta-data
