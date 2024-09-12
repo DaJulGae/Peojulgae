@@ -71,8 +71,8 @@ public class TakePayActivity extends AppCompatActivity {
         items.add(item);
 
         Payload payload = new Payload();
-        payload.setApplicationId("5b8f6a4d396fa665fdc2b5e8")
-                .setOrderName("주문 테스트")
+        payload.setApplicationId("665095dd51b4276f9e1e11b7")
+                .setOrderName("Peojulgae 앱 결제")
                 .setOrderId("1234")
                 .setPrice((double) discountedPrice) // 할인된 금액 사용
                 .setUser(user)
