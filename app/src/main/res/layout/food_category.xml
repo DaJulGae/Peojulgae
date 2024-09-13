@@ -51,6 +51,7 @@
                 android:background="@color/grey"/>
 
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/food_tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -152,7 +153,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:layout_marginEnd="4dp"
-                            android:text="34%"
+                            android:text="10%"
                             android:layout_weight="1"
                             android:textColor="@color/red"/>
 
@@ -222,7 +223,7 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="4dp"
                             android:gravity="end"
-                            android:text="26%"
+                            android:text="10%"
                             android:textColor="@color/red"/>
 
                         <TextView
@@ -289,7 +290,7 @@
                             android:layout_marginEnd="4dp"
                             android:layout_weight="1"
                             android:gravity="end"
-                            android:text="34%"
+                            android:text="10%"
                             android:textColor="@color/red" />
 
                         <TextView
@@ -350,7 +351,7 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="4dp"
                             android:gravity="end"
-                            android:text="26%"
+                            android:text="10%"
                             android:textColor="@color/red"/>
 
                         <TextView
@@ -416,7 +417,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:layout_marginEnd="4dp"
-                            android:text="34%"
+                            android:text="10%"
                             android:layout_weight="1"
                             android:textColor="@color/red"/>
 
@@ -478,7 +479,7 @@
                             android:layout_weight="1"
                             android:layout_marginEnd="4dp"
                             android:gravity="end"
-                            android:text="26%"
+                            android:text="10%"
                             android:textColor="@color/red"/>
 
                         <TextView
