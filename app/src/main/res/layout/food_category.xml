@@ -165,14 +165,6 @@
                             android:layout_weight="1"
                             android:text="34,120원"/>
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:gravity="center"
-                        android:text="사은품 증정"
-                        android:textColor="@color/blue"/>
 
                 </LinearLayout>
 

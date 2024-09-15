@@ -93,31 +93,31 @@ public class FoodCategoryActivity extends AppCompatActivity {
     // 야채 이미지로 설정
     private void updateVegetableImages() {
         ImageView1.setImageResource(R.drawable.carrot);
-        ImageView2.setImageResource(R.drawable.carrot);
-        ImageView3.setImageResource(R.drawable.carrot);
-        ImageView4.setImageResource(R.drawable.carrot);
-        ImageView5.setImageResource(R.drawable.carrot);
-        ImageView6.setImageResource(R.drawable.carrot);
+        ImageView2.setImageResource(R.drawable.tomato);
+        ImageView3.setImageResource(R.drawable.cucumber);
+        ImageView4.setImageResource(R.drawable.paprica);
+        ImageView5.setImageResource(R.drawable.brocoli);
+        ImageView6.setImageResource(R.drawable.onion);
     }
 
     // 육류 이미지로 설정
     private void updateMeatImages() {
         ImageView1.setImageResource(R.drawable.meat_cow);
-        ImageView2.setImageResource(R.drawable.meat_cow);
-        ImageView3.setImageResource(R.drawable.meat_cow);
-        ImageView4.setImageResource(R.drawable.meat_cow);
-        ImageView5.setImageResource(R.drawable.meat_cow);
-        ImageView6.setImageResource(R.drawable.meat_cow);
+        ImageView2.setImageResource(R.drawable.pork);
+        ImageView3.setImageResource(R.drawable.chicken);
+        ImageView4.setImageResource(R.drawable.lamb);
+        ImageView5.setImageResource(R.drawable.duck);
+        ImageView6.setImageResource(R.drawable.turkey);
     }
 
     // 기타 이미지로 설정
     private void updateElsesImages() {
         ImageView1.setImageResource(R.drawable.mealkit);
-        ImageView2.setImageResource(R.drawable.mealkit);
-        ImageView3.setImageResource(R.drawable.mealkit);
-        ImageView4.setImageResource(R.drawable.mealkit);
-        ImageView5.setImageResource(R.drawable.mealkit);
-        ImageView6.setImageResource(R.drawable.mealkit);
+        ImageView2.setImageResource(R.drawable.rice);
+        ImageView3.setImageResource(R.drawable.oil);
+        ImageView4.setImageResource(R.drawable.soy_sauce);
+        ImageView5.setImageResource(R.drawable.noodle);
+        ImageView6.setImageResource(R.drawable.sauce);
     }
 
     // 과일 클릭 리스너 설정
@@ -133,11 +133,11 @@ public class FoodCategoryActivity extends AppCompatActivity {
     // 야채 클릭 리스너 설정
     private void setupVegetableClickListeners() {
         ImageView1.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "당근", "2,500원"));
-        ImageView2.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "브로콜리", "3,000원"));
-        ImageView3.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "감자", "1,500원"));
-        ImageView4.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "토마토", "4,000원"));
-        ImageView5.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "시금치", "3,500원"));
-        ImageView6.setOnClickListener(v -> openMartSpecificActivity(R.drawable.carrot, "양배추", "2,800원"));
+        ImageView2.setOnClickListener(v -> openMartSpecificActivity(R.drawable.tomato, "토마토", "3,000원"));
+        ImageView3.setOnClickListener(v -> openMartSpecificActivity(R.drawable.cucumber, "오이", "1,500원"));
+        ImageView4.setOnClickListener(v -> openMartSpecificActivity(R.drawable.paprica, "파프리카", "4,000원"));
+        ImageView5.setOnClickListener(v -> openMartSpecificActivity(R.drawable.brocoli, "브로콜리", "3,500원"));
+        ImageView6.setOnClickListener(v -> openMartSpecificActivity(R.drawable.onion, "양파", "2,800원"));
     }
 
     // 육류 클릭 리스너 설정
@@ -178,11 +178,11 @@ public class FoodCategoryActivity extends AppCompatActivity {
 
     private void updateVegetableInfo() {
         textView1.setText("당근");
-        textView2.setText("브로콜리");
-        textView3.setText("감자");
-        textView4.setText("토마토");
-        textView5.setText("시금치");
-        textView6.setText("양배추");
+        textView2.setText("토마토");
+        textView3.setText("오이");
+        textView4.setText("파프리카");
+        textView5.setText("브로콜리");
+        textView6.setText("양파");
 
         textView7.setText("2,500원");
         textView8.setText("3,000원");
