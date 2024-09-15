@@ -386,10 +386,10 @@
                         <ImageView
                             android:id="@+id/shinemuscatimage"
                             android:layout_width="150dp"
-                            android:layout_height="140dp"
-                            android:src="@drawable/shine_muscat"
+                            android:layout_height="match_parent"
                             android:clipToOutline="true"
-                            android:scaleType="fitXY">
+                            android:scaleType="fitXY"
+                            android:src="@drawable/shine_muscat">
 
                         </ImageView>
                     </androidx.cardview.widget.CardView>
