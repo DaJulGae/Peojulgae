@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddproductActivity extends AppCompatActivity {
 
@@ -47,15 +48,16 @@ public class AddproductActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private DatabaseReference db;
     private List<Uri> photoUris;
+    private Uri mainImageUri;
     private int discount = 0;
     private int quantity = 1;
-    private Uri mainImageUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addproduct);
 
+        // UI 요소 초기화
         foodName = findViewById(R.id.foodName);
         foodDescription = findViewById(R.id.foodDescription);
         foodPrice = findViewById(R.id.foodPrice);
@@ -68,6 +70,7 @@ public class AddproductActivity extends AppCompatActivity {
         discountSeekBar = findViewById(R.id.discountSeekBar);
         quantitySeekBar = findViewById(R.id.quantitySeekBar);
 
+        // 카테고리 체크박스 초기화
         categoryPizza = findViewById(R.id.categoryPizza);
         categoryChicken = findViewById(R.id.categoryChicken);
         categoryDessert = findViewById(R.id.categoryDessert);
@@ -79,29 +82,13 @@ public class AddproductActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
-        db = FirebaseDatabase.getInstance().getReference("Foods");
+        db = FirebaseDatabase.getInstance().getReference("FoodS");
         photoUris = new ArrayList<>();
 
-        selectPhotosButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectPhotos();
-            }
-        });
-
-        selectMainImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectMainImage();
-            }
-        });
-
-        registerFoodButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerFood();
-            }
-        });
+        // 이벤트 리스너 설정
+        selectPhotosButton.setOnClickListener(v -> selectPhotos());
+        selectMainImageButton.setOnClickListener(v -> selectMainImage());
+        registerFoodButton.setOnClickListener(v -> registerFood());
 
         discountSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -111,12 +98,10 @@ public class AddproductActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
 
         quantitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -127,15 +112,14 @@ public class AddproductActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
 
+    // 다중 사진 선택 메소드
     private void selectPhotos() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -143,6 +127,7 @@ public class AddproductActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "사진 선택"), SELECT_PHOTOS_REQUEST_CODE);
     }
 
+    // 메인 이미지 선택 메소드
     private void selectMainImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
@@ -153,28 +138,33 @@ public class AddproductActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == SELECT_PHOTOS_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            if (data.getClipData() != null) {
-                int count = data.getClipData().getItemCount();
-                for (int i = 0; i < count; i++) {
-                    photoUris.add(data.getClipData().getItemAt(i).getUri());
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            // 여러 장의 사진 선택
+            if (requestCode == SELECT_PHOTOS_REQUEST_CODE) {
+                if (data.getClipData() != null) {
+                    int count = data.getClipData().getItemCount();
+                    for (int i = 0; i < count; i++) {
+                        Uri imageUri = data.getClipData().getItemAt(i).getUri();
+                        photoUris.add(imageUri);
+                    }
+                } else if (data.getData() != null) {
+                    photoUris.add(data.getData());
                 }
-            } else if (data.getData() != null) {
-                photoUris.add(data.getData());
+                selectedPhotosText.setText(photoUris.size() + "장의 사진 선택됨");
             }
-            selectedPhotosText.setText(photoUris.size() + "장의 사진 선택됨");
-        } else if (requestCode == SELECT_MAIN_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK && data != null) {
-            mainImageUri = data.getData();
-            selectMainImageButton.setText("메인 이미지 선택됨");
+            // 메인 이미지 선택
+            else if (requestCode == SELECT_MAIN_IMAGE_REQUEST_CODE) {
+                mainImageUri = data.getData();
+                selectMainImageButton.setText("메인 이미지 선택됨");
+            }
         }
     }
 
+    // 음식 정보 등록 메소드
     private void registerFood() {
-        Log.d(TAG, "registerFood: Started");
         String name = foodName.getText().toString().trim();
         String description = foodDescription.getText().toString().trim();
         String price = foodPrice.getText().toString().trim();
-        String discountString = String.valueOf(discount);
 
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(description) || TextUtils.isEmpty(price)) {
             Toast.makeText(this, "모든 필드를 입력하세요.", Toast.LENGTH_SHORT).show();
@@ -184,14 +174,15 @@ public class AddproductActivity extends AppCompatActivity {
         String userId = auth.getCurrentUser().getUid();
         final DatabaseReference foodRef = db.push();
 
-        final Map<String, Object> food = new HashMap<>();
-        food.put("name", name);
-        food.put("description", description);
-        food.put("price", price);
-        food.put("discount", discountString);
-        food.put("quantity", quantity);
-        food.put("userId", userId);
+        final Map<String, Object> foodData = new HashMap<>();
+        foodData.put("name", name);
+        foodData.put("description", description);
+        foodData.put("price", price);
+        foodData.put("discount", discount);
+        foodData.put("quantity", quantity);
+        foodData.put("userId", userId);
 
+        // 카테고리 선택 처리
         List<String> categories = new ArrayList<>();
         if (categoryPizza.isChecked()) categories.add("피자");
         if (categoryChicken.isChecked()) categories.add("치킨");
@@ -201,110 +192,61 @@ public class AddproductActivity extends AppCompatActivity {
         if (categoryJapanese.isChecked()) categories.add("일식");
         if (categoryChinese.isChecked()) categories.add("중식");
         if (categoryKorean.isChecked()) categories.add("한식");
-        food.put("categories", categories);
+        foodData.put("categories", categories);
 
+        uploadPhotosAndSave(foodRef, foodData);
+    }
+
+    // 사진 업로드 및 저장 메소드
+    private void uploadPhotosAndSave(DatabaseReference foodRef, Map<String, Object> foodData) {
+        StorageReference storageRef = storage.getReference().child("food_photos").child(foodRef.getKey());
+
+        // 메인 이미지 업로드
+        if (mainImageUri != null) {
+            String mainImageFileName = UUID.randomUUID().toString() + ".jpg"; // 고유한 파일 이름 생성
+            uploadImage(storageRef.child(mainImageFileName), mainImageUri, url -> {
+                foodData.put("mainImageUrl", url);
+                saveToDatabase(foodRef, foodData);
+            });
+        }
+
+        // 다중 사진 업로드
         if (!photoUris.isEmpty()) {
             final List<String> photoUrls = new ArrayList<>();
-            StorageReference storageRef = storage.getReference().child("food_photos").child(foodRef.getKey());
-            Log.d(TAG, "Storage Reference Path: " + storageRef.getPath());
-
             for (Uri uri : photoUris) {
-                final StorageReference photoRef = storageRef.child(uri.getLastPathSegment());
-                photoRef.putFile(uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            photoRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    if (task.isSuccessful()) {
-                                        photoUrls.add(task.getResult().toString());
-                                        if (photoUrls.size() == photoUris.size()) {
-                                            food.put("photoUrls", photoUrls);
-                                            if (mainImageUri != null) {
-                                                final StorageReference mainImageRef = storageRef.child("main_image");
-                                                mainImageRef.putFile(mainImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                                        if (task.isSuccessful()) {
-                                                            mainImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<Uri> task) {
-                                                                    if (task.isSuccessful()) {
-                                                                        food.put("mainImageUrl", task.getResult().toString());
-                                                                        saveFoodToDatabase(foodRef, food);
-                                                                    } else {
-                                                                        Toast.makeText(AddproductActivity.this, "메인 이미지 URL 가져오기 실패", Toast.LENGTH_SHORT).show();
-                                                                        Log.e(TAG, "메인 이미지 URL 가져오기 실패: " + task.getException().getMessage());
-                                                                    }
-                                                                }
-                                                            });
-                                                        } else {
-                                                            Toast.makeText(AddproductActivity.this, "메인 이미지 업로드 실패", Toast.LENGTH_SHORT).show();
-                                                            Log.e(TAG, "메인 이미지 업로드 실패: " + task.getException().getMessage());
-                                                        }
-                                                    }
-                                                });
-                                            } else {
-                                                saveFoodToDatabase(foodRef, food);
-                                            }
-                                        }
-                                    } else {
-                                        Toast.makeText(AddproductActivity.this, "사진 URL 가져오기 실패", Toast.LENGTH_SHORT).show();
-                                        Log.e(TAG, "사진 URL 가져오기 실패: " + task.getException().getMessage());
-                                    }
-                                }
-                            });
-                        } else {
-                            Toast.makeText(AddproductActivity.this, "사진 업로드 실패", Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "사진 업로드 실패: " + task.getException().getMessage());
-                        }
-                    }
-                });
+                String photoFileName = UUID.randomUUID().toString() + ".jpg"; // 고유한 파일 이름 생성
+                uploadImage(storageRef.child(photoFileName), uri, photoUrls::add);
             }
-        } else {
-            if (mainImageUri != null) {
-                StorageReference storageRef = storage.getReference().child("food_photos").child(foodRef.getKey());
-                final StorageReference mainImageRef = storageRef.child("main_image");
-                mainImageRef.putFile(mainImageUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            mainImageRef.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Uri> task) {
-                                    if (task.isSuccessful()) {
-                                        food.put("mainImageUrl", task.getResult().toString());
-                                        saveFoodToDatabase(foodRef, food);
-                                    } else {
-                                        Toast.makeText(AddproductActivity.this, "메인 이미지 URL 가져오기 실패", Toast.LENGTH_SHORT).show();
-                                        Log.e(TAG, "메인 이미지 URL 가져오기 실패: " + task.getException().getMessage());
-                                    }
-                                }
-                            });
-                        } else {
-                            Toast.makeText(AddproductActivity.this, "메인 이미지 업로드 실패", Toast.LENGTH_SHORT).show();
-                            Log.e(TAG, "메인 이미지 업로드 실패: " + task.getException().getMessage());
-                        }
-                    }
-                });
-            } else {
-                saveFoodToDatabase(foodRef, food);
-            }
+            foodData.put("photoUrls", photoUrls);
         }
+
+        // 데이터 저장
+        saveToDatabase(foodRef, foodData);
     }
 
-    private void saveFoodToDatabase(DatabaseReference foodRef, Map<String, Object> food) {
-        foodRef.setValue(food)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(AddproductActivity.this, "음식 등록 완료", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "음식 등록 완료: " + foodRef.getKey());
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(AddproductActivity.this, "오류: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "데이터베이스 저장 실패: " + e.getMessage());
-                });
+    // 이미지 업로드 메소드
+    private void uploadImage(StorageReference ref, Uri uri, OnCompleteListener<String> onComplete) {
+        ref.putFile(uri).addOnSuccessListener(taskSnapshot ->
+                ref.getDownloadUrl().addOnSuccessListener(url -> onComplete.onComplete(url.toString()))
+        ).addOnFailureListener(e -> {
+            Log.e(TAG, "파일 업로드 실패: " + e.getMessage());
+            Toast.makeText(this, "파일 업로드 실패", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    // Firebase에 음식 데이터 저장 메소드
+    private void saveToDatabase(DatabaseReference foodRef, Map<String, Object> foodData) {
+        foodRef.setValue(foodData).addOnSuccessListener(aVoid -> {
+            Toast.makeText(this, "음식 등록 완료", Toast.LENGTH_SHORT).show();
+            finish();
+        }).addOnFailureListener(e -> {
+            Log.e(TAG, "데이터베이스 저장 실패: " + e.getMessage());
+            Toast.makeText(this, "데이터베이스 저장 실패", Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    // 콜백 인터페이스
+    private interface OnCompleteListener<T> {
+        void onComplete(T result);
     }
 }
-

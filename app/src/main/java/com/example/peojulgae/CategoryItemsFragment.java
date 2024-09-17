@@ -62,6 +62,7 @@ public class CategoryItemsFragment extends Fragment {
         categoryItemsRecyclerView = view.findViewById(R.id.categoryItemsRecyclerView);
         categoryItemsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
+
         foodList = new ArrayList<>();
         filteredFoodList = new ArrayList<>();
         foodAdapter = new FoodAdapter(filteredFoodList, getContext());
@@ -69,7 +70,7 @@ public class CategoryItemsFragment extends Fragment {
         // 어댑터를 RecyclerView에 설정
         categoryItemsRecyclerView.setAdapter(foodAdapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Categories").child(currentCategory);
+        dbRef = FirebaseDatabase.getInstance().getReference("FoodS").child(currentCategory);
 
         loadFoods();
         setupSearch();
@@ -84,11 +85,15 @@ public class CategoryItemsFragment extends Fragment {
                 foodList.clear();
                 for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
                     Food food = foodSnapshot.getValue(Food.class);
-                    foodList.add(food);
+
+                    // 필터링된 카테고리별로 데이터를 처리
+                    if (food != null && food.getCategories().contains(currentCategory)) {
+                        foodList.add(food);
+                    }
                 }
                 filteredFoodList.clear();
                 filteredFoodList.addAll(foodList);
-                foodAdapter.notifyDataSetChanged();
+                foodAdapter.notifyDataSetChanged(); // 데이터가 바뀌면 RecyclerView 업데이트
             }
 
             @Override
@@ -97,6 +102,7 @@ public class CategoryItemsFragment extends Fragment {
             }
         });
     }
+
 
     private void setupSearch() {
         searchEditText.addTextChangedListener(new TextWatcher() {

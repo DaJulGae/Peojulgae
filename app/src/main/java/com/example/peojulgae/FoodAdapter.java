@@ -1,6 +1,7 @@
 package com.example.peojulgae;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         holder.foodPrice.setText("가격: " + food.getPrice());
         holder.foodDiscount.setText("할인율: " + food.getDiscount() + "%");
         holder.foodQuantity.setText("수량: " + food.getQuantity());  // 수량 표시
+
 
         Glide.with(context).load(food.getMainImageUrl()).into(holder.foodImage);
     }

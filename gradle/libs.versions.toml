@@ -33,6 +33,7 @@ firebaseAuth = "23.0.0"
 firebaseDatabase = "21.0.0"
 firebaseFirestore = "25.0.0"
 firebaseStorage = "21.0.0"
+firebaseAppcheckPlayintegrity = "18.0.0"
 
 [libraries]
 android = { module = "com.kakao.maps.open:android", version.ref = "android" }
@@ -75,6 +76,7 @@ firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version
 firebase-database = { group = "com.google.firebase", name = "firebase-database", version.ref = "firebaseDatabase" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+firebase-appcheck-playintegrity = { group = "com.google.firebase", name = "firebase-appcheck-playintegrity", version.ref = "firebaseAppcheckPlayintegrity" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

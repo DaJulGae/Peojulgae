@@ -1,6 +1,7 @@
 package com.example.peojulgae;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,10 +30,10 @@ public class JapaneseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_japanese_fragment, container, false);  // Ensure this matches your layout file name
+        View view = inflater.inflate(R.layout.activity_japanese_fragment, container, false);
 
         categoryItemsRecyclerView = view.findViewById(R.id.japaneseRecyclerView);
-        categoryItemsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        categoryItemsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));//행 두 개로
 
         foodList = new ArrayList<>();
         filteredFoodList = new ArrayList<>();
@@ -41,7 +42,7 @@ public class JapaneseFragment extends Fragment {
         // 어댑터를 RecyclerView에 설정
         categoryItemsRecyclerView.setAdapter(foodAdapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Foods");
+        dbRef = FirebaseDatabase.getInstance().getReference("FoodS").child("일식");
 
         loadFoods();
 
@@ -53,6 +54,7 @@ public class JapaneseFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 foodList.clear();
+
                 for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
                     Food food = foodSnapshot.getValue(Food.class);
                     if (food != null && food.getCategories().contains("일식")) {
