@@ -1,20 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".DessertFragment">
 
+    <!-- 카테고리 라벨 -->
     <TextView
+        android:id="@+id/categoryTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="디저트"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:paddingTop="12dp"
+        android:gravity="center" />
+
+    <!-- 카테고리 선택을 위한 가로 스크롤 뷰 -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp">
+
+        <LinearLayout
+            android:id="@+id/categoryLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- 카테고리 버튼들 -->
+            <Button
+                android:id="@+id/category_pizza"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="피자"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_chicken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="치킨"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_korean"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="한식"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_japanese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일식"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_chinese"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중식"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_snack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="분식"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_dessert"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="디저트"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/category_drink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음료"
+                android:background="?attr/selectableItemBackground"
+                android:padding="8dp"
+                android:layout_marginEnd="8dp" />
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dessertRecyclerView"
-
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="12dp"
+        android:clipToPadding="false"
+        tools:listitem="@layout/item_food" />
+
 </LinearLayout>

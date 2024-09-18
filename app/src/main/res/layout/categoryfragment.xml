@@ -7,18 +7,49 @@
     android:padding="16dp"
     tools:context=".Frag2">
 
-    <EditText
-        android:id="@+id/searchEditText"
+    <!-- 검색창과 검색 버튼을 나란히 배치하는 LinearLayout -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="검색"
-        android:padding="8dp"
-        android:layout_marginBottom="16dp"/>
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
 
+        <!-- 검색창 (EditText) -->
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="상품명 검색"
+            android:padding="8dp"
+            android:layout_marginEnd="8dp" /> <!-- 검색창과 버튼 사이의 간격 -->
+
+        <!-- 검색 버튼 -->
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:padding="12dp"
+            android:backgroundTint="@color/design_default_color_primary"
+            android:textColor="@android:color/white"
+            android:elevation="2dp" /> <!-- 버튼에 약간의 그림자 추가 -->
+    </LinearLayout>
+
+    <!-- 카테고리 목록을 표시하는 RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:scrollbars="vertical"/>
+
+    <!-- 검색 결과를 표시하는 RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="vertical"
+        android:visibility="gone"/> <!-- 검색 결과는 기본적으로 숨김 상태 -->
 </LinearLayout>

@@ -7,7 +7,7 @@ public class Food {
     private String name;
     private String description;
     private String price;
-    private String discount;
+    private int discount;
     private int quantity;
     private String imageUrl;
     private String mainImageUrl;  // mainImageUrl 필드 추가
@@ -17,7 +17,7 @@ public class Food {
         // Default constructor required for calls to DataSnapshot.getValue(Food.class)
     }
 
-    public Food(String foodId, String name, String description, String price, String discount, int quantity, String imageUrl, String mainImageUrl, List<String> categories) {
+    public Food(String foodId, String name, String description, String price, int discount, int quantity, String imageUrl, String mainImageUrl, List<String> categories) {
         this.foodId = foodId;
         this.name = name;
         this.description = description;
@@ -48,7 +48,7 @@ public class Food {
         return price;
     }
 
-    public String getDiscount() {
+    public int getDiscount() {
         return discount;
     }
 

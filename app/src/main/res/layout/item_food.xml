@@ -5,56 +5,67 @@
     android:orientation="vertical"
     android:padding="8dp">
 
+    <!-- 음식 이미지 -->
     <ImageView
         android:id="@+id/food_image"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true" /> <!-- 이미지 비율을 유지하여 잘리지 않도록 조정 -->
 
+    <!-- 음식 이름 -->
     <TextView
         android:id="@+id/food_name"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="음식명"
         android:textSize="18sp"
         android:textStyle="bold"
         android:paddingTop="4dp" />
 
+    <!-- 음식 설명 -->
     <TextView
         android:id="@+id/food_description"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="설명"
         android:textSize="14sp"
         android:paddingTop="4dp" />
 
+    <!-- 가격 및 할인율을 위한 레이아웃 -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="4dp">
+        android:paddingTop="4dp"
+        android:weightSum="2">
 
+        <!-- 음식 가격 -->
         <TextView
             android:id="@+id/food_price"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="가격"
             android:textSize="16sp"
             android:textStyle="bold" />
 
+        <!-- 음식 할인율 -->
         <TextView
             android:id="@+id/food_discount"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="할인율"
             android:textSize="16sp"
-            android:paddingStart="8dp"
-            android:textColor="@android:color/holo_red_dark" />
+            android:textColor="@android:color/holo_red_dark"
+            android:textAlignment="textEnd" /> <!-- 할인율 텍스트를 오른쪽으로 정렬 -->
     </LinearLayout>
 
+    <!-- 음식 수량 -->
     <TextView
         android:id="@+id/food_quantity"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="수량"
         android:textSize="16sp"
