@@ -25,7 +25,7 @@ import com.example.peojulgae.AddmartActivity;
 import com.example.peojulgae.AddproductActivity;
 import com.example.peojulgae.AddrestaurantActivity;
 import com.example.peojulgae.CancelPayActivity;
-import com.example.peojulgae.EditproductActivity;
+import com.example.peojulgae.ManageFoodActivity;
 import com.example.peojulgae.R;
 import com.example.peojulgae.RegisterActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -100,7 +100,7 @@ public class Frag4 extends Fragment {
         });
 
         editButton.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), EditproductActivity.class);
+            Intent intent = new Intent(getActivity(), ManageFoodActivity.class);
             startActivity(intent);
         });
         addrestaurantButton.setOnClickListener(v -> {

@@ -21,8 +21,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,6 +54,7 @@ public class AddproductActivity extends AppCompatActivity {
     private Uri mainImageUri;
     private int discount = 0;
     private int quantity = 1;
+    private String restaurantId; // 사용자의 음식점 ID 저장
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +86,27 @@ public class AddproductActivity extends AppCompatActivity {
 
         auth = FirebaseAuth.getInstance();
         storage = FirebaseStorage.getInstance();
-        db = FirebaseDatabase.getInstance().getReference("FoodS");
+        db = FirebaseDatabase.getInstance().getReference(); // 경로 변경: 'FoodS' 대신 루트 경로로 수정
         photoUris = new ArrayList<>();
+
+        // 사용자 restaurantId 확인
+        String userId = auth.getCurrentUser().getUid();
+        db.child("Users").child(userId).child("restaurantId").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    restaurantId = snapshot.getValue(String.class);
+                } else {
+                    Toast.makeText(AddproductActivity.this, "음식점이 등록되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    finish(); // 음식점이 없으면 액티비티 종료
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(AddproductActivity.this, "데이터베이스 오류: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // 이벤트 리스너 설정
         selectPhotosButton.setOnClickListener(v -> selectPhotos());
@@ -171,16 +194,28 @@ public class AddproductActivity extends AppCompatActivity {
             return;
         }
 
-        String userId = auth.getCurrentUser().getUid();
-        final DatabaseReference foodRef = db.push();
+        if (restaurantId == null) {
+            Toast.makeText(this, "음식점이 등록되지 않았습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String foodId = db.child("Restaurants").child(restaurantId).child("Foods").push().getKey(); // 음식 ID 생성
+        if (foodId == null) {
+            Toast.makeText(this, "foodId 생성 실패", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        final DatabaseReference foodRef = db.child("Restaurants").child(restaurantId).child("Foods").child(foodId);
 
         final Map<String, Object> foodData = new HashMap<>();
+        foodData.put("foodId", foodId); // foodId 추가
         foodData.put("name", name);
         foodData.put("description", description);
         foodData.put("price", price);
         foodData.put("discount", discount);
         foodData.put("quantity", quantity);
-        foodData.put("userId", userId);
+        foodData.put("restaurantId", restaurantId); // restaurantId 추가
+        foodData.put("userId", auth.getCurrentUser().getUid());
 
         // 카테고리 선택 처리
         List<String> categories = new ArrayList<>();
@@ -250,3 +285,4 @@ public class AddproductActivity extends AppCompatActivity {
         void onComplete(T result);
     }
 }
+

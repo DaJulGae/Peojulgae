@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +33,8 @@ public class CategoryItemsFragment extends Fragment {
     private List<Food> filteredFoodList;
     private DatabaseReference dbRef;
     private String currentCategory;
+    private String restaurantId; // 음식점 ID를 저장할 변수
+    private FirebaseAuth auth;
 
     public CategoryItemsFragment() {
         // 기본 생성자 필요
@@ -62,7 +65,6 @@ public class CategoryItemsFragment extends Fragment {
         categoryItemsRecyclerView = view.findViewById(R.id.categoryItemsRecyclerView);
         categoryItemsRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-
         foodList = new ArrayList<>();
         filteredFoodList = new ArrayList<>();
         foodAdapter = new FoodAdapter(filteredFoodList, getContext());
@@ -70,15 +72,53 @@ public class CategoryItemsFragment extends Fragment {
         // 어댑터를 RecyclerView에 설정
         categoryItemsRecyclerView.setAdapter(foodAdapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("FoodS").child(currentCategory);
+        // FirebaseAuth 초기화
+        auth = FirebaseAuth.getInstance();
 
-        loadFoods();
+        // 사용자 ID 가져오기
+        String userId = auth.getCurrentUser().getUid();
+
+        // 사용자의 restaurantId를 가져오기 위해 데이터베이스 참조
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+        userRef.child("restaurantId").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    restaurantId = snapshot.getValue(String.class);
+                    if (restaurantId != null) {
+                        // restaurantId를 통해 dbRef 설정
+                        dbRef = FirebaseDatabase.getInstance().getReference()
+                                .child("Restaurants").child(restaurantId).child("Foods");
+
+                        // 기본 카테고리 데이터 로드
+                        loadFoods();
+                    } else {
+                        Toast.makeText(getContext(), "음식점 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(getContext(), "음식점이 등록되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "데이터베이스 오류: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         setupSearch();
 
         return view;
     }
 
+    // 카테고리별 데이터 로드
     private void loadFoods() {
+        if (dbRef == null) {
+            // dbRef가 null인 경우 (restaurantId가 아직 null이므로)
+            Toast.makeText(getContext(), "음식점 정보를 불러오는 중입니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,7 +127,7 @@ public class CategoryItemsFragment extends Fragment {
                     Food food = foodSnapshot.getValue(Food.class);
 
                     // 필터링된 카테고리별로 데이터를 처리
-                    if (food != null && food.getCategories().contains(currentCategory)) {
+                    if (food != null && food.getCategories() != null && food.getCategories().contains(currentCategory)) {
                         foodList.add(food);
                     }
                 }
@@ -102,7 +142,6 @@ public class CategoryItemsFragment extends Fragment {
             }
         });
     }
-
 
     private void setupSearch() {
         searchEditText.addTextChangedListener(new TextWatcher() {
