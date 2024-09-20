@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,47 +29,11 @@ public class SnackFragment extends Fragment {
     private DatabaseReference dbRef;
     private String selectedCategory = "분식"; // 기본 카테고리
     private TextView categoryTitle; // TextView 참조 변수
-    private String restaurantId; // 사용자 음식점 ID를 저장할 변수
-    private FirebaseAuth auth;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_snack_fragment, container, false);
-
-        // FirebaseAuth 초기화
-        auth = FirebaseAuth.getInstance();
-
-        // 사용자 ID 가져오기
-        String userId = auth.getCurrentUser().getUid();
-
-        // 사용자의 restaurantId를 가져오기 위해 데이터베이스 참조
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-        userRef.child("restaurantId").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    restaurantId = snapshot.getValue(String.class);
-                    if (restaurantId != null) {
-                        // restaurantId를 통해 dbRef 설정
-                        dbRef = FirebaseDatabase.getInstance().getReference()
-                                .child("Restaurants").child(restaurantId).child("Foods");
-
-                        // 기본 카테고리 데이터 로드
-                        loadFoods(selectedCategory);
-                    } else {
-                        Toast.makeText(getContext(), "음식점 정보를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    Toast.makeText(getContext(), "음식점이 등록되지 않았습니다.", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "데이터베이스 오류: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         // UI 요소 초기화
         categoryTitle = view.findViewById(R.id.categoryTitle);
@@ -84,31 +47,36 @@ public class SnackFragment extends Fragment {
         // 어댑터를 RecyclerView에 설정
         snackRecyclerView.setAdapter(foodAdapter);
 
+        // Firebase 데이터베이스 참조 설정 (모든 음식점의 Foods 데이터를 가져옴)
+        dbRef = FirebaseDatabase.getInstance().getReference().child("Restaurants");
+
+        // 기본 카테고리 데이터 로드
+        loadAllFoods(selectedCategory);
+
         // 카테고리 버튼 클릭 이벤트 추가
         setCategoryButtons(view);
 
         return view;
     }
 
-    // 카테고리별 데이터 로드
-    private void loadFoods(String category) {
-        if (dbRef == null) {
-            // dbRef가 null인 경우 (restaurantId가 아직 null이므로)
-            Toast.makeText(getContext(), "음식점 정보를 불러오는 중입니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
+    // 모든 음식점의 카테고리별 음식 데이터를 로드하는 메소드
+    private void loadAllFoods(String category) {
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 foodList.clear();
 
-                for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
-                    Food food = foodSnapshot.getValue(Food.class);
-                    if (food != null && food.getCategories() != null && food.getCategories().contains(category)) {
-                        foodList.add(food);
+                // 모든 음식점 데이터를 순회하며 음식 리스트 추가
+                for (DataSnapshot restaurantSnapshot : snapshot.getChildren()) {
+                    DataSnapshot foodsSnapshot = restaurantSnapshot.child("Foods");
+                    for (DataSnapshot foodSnapshot : foodsSnapshot.getChildren()) {
+                        Food food = foodSnapshot.getValue(Food.class);
+                        if (food != null && food.getCategories() != null && food.getCategories().contains(category)) {
+                            foodList.add(food);
+                        }
                     }
                 }
+
                 filteredFoodList.clear();
                 filteredFoodList.addAll(foodList);
                 foodAdapter.notifyDataSetChanged();
@@ -135,48 +103,48 @@ public class SnackFragment extends Fragment {
         // 각 카테고리 버튼 클릭 시 해당 카테고리 데이터 로드 및 라벨 업데이트
         pizzaButton.setOnClickListener(v -> {
             selectedCategory = "피자";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         chickenButton.setOnClickListener(v -> {
             selectedCategory = "치킨";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         koreanButton.setOnClickListener(v -> {
             selectedCategory = "한식";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         japaneseButton.setOnClickListener(v -> {
             selectedCategory = "일식";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         chineseButton.setOnClickListener(v -> {
             selectedCategory = "중식";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         snackButton.setOnClickListener(v -> {
             selectedCategory = "분식";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         dessertButton.setOnClickListener(v -> {
             selectedCategory = "디저트";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
         drinkButton.setOnClickListener(v -> {
             selectedCategory = "음료";
-            updateCategoryTitle(selectedCategory); // TextView 업데이트
-            loadFoods(selectedCategory);
+            updateCategoryTitle(selectedCategory);
+            loadAllFoods(selectedCategory);
         });
     }
 
     // 카테고리 라벨 업데이트 메서드
     private void updateCategoryTitle(String category) {
-        categoryTitle.setText(category); // 선택된 카테고리로 라벨 변경
+        categoryTitle.setText(category);
     }
 }
