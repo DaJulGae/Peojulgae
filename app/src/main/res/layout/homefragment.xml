@@ -124,53 +124,116 @@
 
                 </LinearLayout>
 
-                <ViewFlipper
-                    android:id="@+id/viewFlipper"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:autoStart="true"
-                    android:flipInterval="2400"
-                    android:inAnimation="@android:anim/slide_in_left"
-                    android:outAnimation="@android:anim/slide_out_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.209">
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ranking_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView17"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        app:srcCompat="@mipmap/three" />
+                        android:id="@+id/storeImage_1"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ganajumbo_store"
+                        app:layout_constraintStart_toEndOf="@+id/ranking_1"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/storeDesc_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginBottom="43dp"
+                        android:text="점보 돈까스 서일대점 \n맛 5 서비스 4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/storeImage_1" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 두 번째 음식점 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ranking_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView18"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        app:srcCompat="@mipmap/with_everyone" />
+                        android:id="@+id/storeImage_2"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintStart_toEndOf="@+id/ranking_2"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/alchon_store" />
+
+                    <TextView
+                        android:id="@+id/storeDesc_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginBottom="43dp"
+                        android:text="알촌 서일대점 \n맛 5 서비스 4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/storeImage_2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 세 번째 음식점 추가 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/ranking_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:textSize="30sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/imageView19"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        app:srcCompat="@mipmap/two" />
+                        android:id="@+id/storeImage_3"
+                        android:layout_width="200dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/gggo_store"
+                        app:layout_constraintStart_toEndOf="@+id/ranking_3"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                </ViewFlipper>
+                    <TextView
+                        android:id="@+id/storeDesc_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="28dp"
+                        android:layout_marginBottom="43dp"
+                        android:text="지지고 서일대점 \n맛 5 서비스 4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/storeImage_3" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -193,53 +256,145 @@
 
                 </LinearLayout>
 
-                <ViewFlipper
-                    android:id="@+id/viewFlipper2"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:autoStart="true"
-                    android:flipInterval="2500"
-                    android:inAnimation="@android:anim/slide_in_left"
-                    android:outAnimation="@android:anim/slide_out_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.666"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.209">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:padding="16dp">
 
-                    <ImageView
-                        android:id="@+id/imageView21"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        android:scaleType="fitXY"
-                        app:srcCompat="@mipmap/modurang" />
-
-                    <ImageView
-                        android:id="@+id/imageView22"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        app:srcCompat="@mipmap/ghanadon" />
-
-                    <ImageView
-                        android:id="@+id/imageView23"
+                    <!-- 첫 번째 음식 -->
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/round_corner"
-                        android:clipToOutline="true"
-                        app:srcCompat="@mipmap/ggo" />
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1">
 
-                </ViewFlipper>
+                        <!-- 음식 이미지 -->
+                        <ImageView
+                            android:id="@+id/food_image_1"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/nicerice"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- 음식명 -->
+                        <TextView
+                            android:id="@+id/food_name_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="지지고"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 음식 설명 -->
+                        <TextView
+                            android:id="@+id/food_desc_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="나이스 라이스"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 원가 및 할인된 가격 -->
+                        <TextView
+                            android:id="@+id/original_price_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4,500원"
+                            android:textColor="#FF0000"
+                            android:textSize="18sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/discounted_price_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="정가 5,000원"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 할인율 -->
+                        <TextView
+                            android:id="@+id/discount_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10% 할인"
+                            android:textColor="#0000FF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- 두 번째 음식 -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:layout_weight="1">
+
+                        <!-- 음식 이미지 -->
+                        <ImageView
+                            android:id="@+id/food_image_2"
+                            android:layout_width="160dp"
+                            android:layout_height="160dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/cheese"
+                            android:layout_marginBottom="8dp" />
+
+                        <!-- 음식명 -->
+                        <TextView
+                            android:id="@+id/food_name_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="가나 점보 돈까스"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 음식 설명 -->
+                        <TextView
+                            android:id="@+id/food_desc_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="치즈 돈까스"
+                            android:textSize="14sp"
+                            android:gravity="center"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 원가 및 할인된 가격 -->
+                        <TextView
+                            android:id="@+id/original_price_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8,000원"
+                            android:textColor="#FF0000"
+                            android:textSize="18sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <TextView
+                            android:id="@+id/discounted_price_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="정가 7,200원"
+                            android:textSize="14sp"
+                            android:layout_marginBottom="4dp" />
+
+                        <!-- 할인율 -->
+                        <TextView
+                            android:id="@+id/discount_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10% 할인"
+                            android:textColor="#0000FF"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
