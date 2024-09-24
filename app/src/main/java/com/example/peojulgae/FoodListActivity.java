@@ -20,6 +20,7 @@ public class FoodListActivity extends AppCompatActivity {
         String imageUrl = intent.getStringExtra("image_url"); // 이미지 URL
         int imageResource = intent.getIntExtra("image_resource", -1); // 이미지 리소스 ID, 기본값은 -1
         String foodName = intent.getStringExtra("food_name");
+        String description = intent.getStringExtra("description");
         String foodPrice = intent.getStringExtra("food_price");
         String discountedPrice = intent.getStringExtra("discounted_price");
 
@@ -46,6 +47,9 @@ public class FoodListActivity extends AppCompatActivity {
 
         TextView discountedPriceTextView = findViewById(R.id.food_ltext08);
         discountedPriceTextView.setText(discountedPrice);
+
+        TextView descriptionTextView = findViewById(R.id.food_ltext02);
+        descriptionTextView.setText(description);
 
         // 할인된 금액 계산
         int originalPrice = Integer.parseInt(foodPrice.replace("원", "").replace(",", "").trim());

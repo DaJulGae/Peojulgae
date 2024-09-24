@@ -46,6 +46,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
             Intent intent = new Intent(context, FoodListActivity.class);
             intent.putExtra("image_url", food.getMainImageUrl()); // URL 전달
             intent.putExtra("food_name", food.getName());
+            intent.putExtra("description", food.getDescription());
             intent.putExtra("food_price", food.getPrice());
             intent.putExtra("discount", food.getDiscount());
             intent.putExtra("discounted_price", calculateDiscountedPrice(food.getPrice(), food.getDiscount()));

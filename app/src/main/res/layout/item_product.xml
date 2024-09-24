@@ -28,10 +28,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="상품 이름"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textColor="@android:color/black"
-            android:textStyle="bold"
             android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <!-- 상품 설명 -->
+        <TextView
+            android:id="@+id/product_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="설명"
+            android:textSize="16sp"
+            android:textColor="@android:color/black"
             android:paddingBottom="4dp" />
 
         <!-- 상품 가격 -->
@@ -42,7 +51,6 @@
             android:text="가격"
             android:textSize="16sp"
             android:textColor="@android:color/black"
-            android:paddingTop="4dp"
             android:paddingBottom="4dp" />
 
         <!-- 할인율 -->
@@ -53,7 +61,6 @@
             android:text="할인율"
             android:textSize="16sp"
             android:textColor="@android:color/holo_red_dark"
-            android:paddingTop="4dp"
             android:paddingBottom="8dp" />
 
     </LinearLayout>

@@ -35,12 +35,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         Product product = productList.get(position);
         holder.productName.setText(product.getName());
-        holder.productPrice.setText(product.getPrice());
-        holder.productDiscount.setText(String.valueOf(product.getDiscount()) + "%");
+        holder.productPrice.setText("가격: " + product.getPrice());
+        holder.productDescription.setText( product.getDescription());
+        holder.productDiscount.setText( "할인율:" + product.getDiscount()+"%");
 
 
-        // discount를 Long 형식에서 문자열로 변환하여 표시
-        holder.productDiscount.setText(product.getDiscount() != null ? product.getDiscount() + "%" : "0%");
+
 
         // 이미지 로드
         if (product.getPhotoUrls() != null && !product.getPhotoUrls().isEmpty()) {
@@ -54,12 +54,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
-        public TextView productName, productPrice, productDiscount;
+        public TextView productName, productPrice, productDiscount, productDescription;
         public ImageView productImage;
 
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             productName = itemView.findViewById(R.id.product_name);
+            productDescription= itemView.findViewById(R.id.product_description);
             productPrice = itemView.findViewById(R.id.product_price);
             productDiscount = itemView.findViewById(R.id.product_discount); // 할인율 표시를 위한 TextView
             productImage = itemView.findViewById(R.id.product_image);
