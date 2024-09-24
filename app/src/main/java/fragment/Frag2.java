@@ -96,6 +96,7 @@ public class Frag2 extends Fragment {
         categoryList.add(new Category("한식"));
         categoryList.add(new Category("일식"));
         categoryList.add(new Category("중식"));
+        categoryList.add(new Category("분식"));
         categoryList.add(new Category("디저트"));
         categoryList.add(new Category("음료"));
 
