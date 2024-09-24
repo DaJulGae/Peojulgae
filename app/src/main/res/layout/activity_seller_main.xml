@@ -94,7 +94,7 @@
                                     android:layout_weight="1"
                                     android:background="@null"
                                     android:scaleType="fitCenter"
-                                    app:srcCompat="@drawable/review" />
+                                    app:srcCompat="@drawable/add" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -130,7 +130,7 @@
                                     android:layout_marginEnd="16dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="리뷰 관리" />
+                                    android:text="마트상품 등록" />
 
                             </LinearLayout>
 

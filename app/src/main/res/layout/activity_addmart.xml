@@ -23,40 +23,38 @@
         android:hint="전화번호" />
 
     <TextView
+        android:id="@+id/operatingHoursText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
         android:text="운영 시간" />
 
     <Button
-        android:id="@+id/select_start_time_button"
+        android:id="@+id/OpeningHoursButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="시작 시간 선택" />
+        android:text="운영시간 선택" />
 
-    <TextView
-        android:id="@+id/start_time_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:text="시작 시간: 선택되지 않음" />
 
+    <!-- 이미지 선택 버튼 추가 -->
     <Button
-        android:id="@+id/select_end_time_button"
+        android:id="@+id/selectPhotosButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="종료 시간 선택" />
+        android:text="이미지 선택" />
 
+    <!-- 선택된 이미지 개수를 표시할 텍스트뷰 추가 -->
     <TextView
-        android:id="@+id/end_time_text"
+        android:id="@+id/selectedPhotosText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="16dp"
-        android:text="종료 시간: 선택되지 않음" />
+        android:paddingTop="8dp"
+        android:text="선택된 이미지 없음" />
 
     <Button
         android:id="@+id/add_mart_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="마트 등록" />
+
 </LinearLayout>

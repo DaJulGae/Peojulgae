@@ -455,7 +455,7 @@
                                     app:srcCompat="@drawable/change" />
 
                                 <ImageButton
-                                    android:id="@+id/seller_review"
+                                    android:id="@+id/mpadd"
                                     android:layout_width="70dp"
                                     android:layout_height="70dp"
                                     android:layout_marginStart="16dp"
@@ -463,7 +463,7 @@
                                     android:layout_weight="1"
                                     android:background="@null"
                                     android:scaleType="fitCenter"
-                                    app:srcCompat="@drawable/review" />
+                                    app:srcCompat="@drawable/add" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -492,14 +492,14 @@
                                     android:text="수정,삭제" />
 
                                 <TextView
-                                    android:id="@+id/my_review_seller"
+                                    android:id="@+id/my_add_seller"
                                     android:layout_width="70dp"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="16dp"
                                     android:layout_marginEnd="16dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="리뷰 관리" />
+                                    android:text="마트상품 등록" />
 
                             </LinearLayout>
 

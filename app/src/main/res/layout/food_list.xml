@@ -18,7 +18,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
@@ -50,8 +49,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:orientation="vertical">
-
+                        android:orientation="vertical"
+                        android:padding="16dp">
 
                         <TextView
                             android:id="@+id/food_ltext01"
@@ -60,118 +59,116 @@
                             android:text="가나 점보 돈까스"
                             android:gravity="center"
                             android:textStyle="bold"
-                            android:textSize="30dp" />
+                            android:textSize="24sp" />
 
                         <TextView
                             android:id="@+id/food_ltext02"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:text="서일대 근처 최고의 가성비 맛집!"
-                            android:textStyle="italic"/>
+                            android:textStyle="italic"
+                            android:layout_marginTop="4dp" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal"
                             android:gravity="center_vertical"
-                            android:orientation="horizontal" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:layout_marginTop="12dp"
+                            android:paddingEnd="16dp">
 
                             <TextView
                                 android:id="@+id/food_ltext03"
-                                android:layout_width="184dp"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="금액: "
-                                android:layout_marginEnd="8dp"
-                                android:textSize="15sp"
-                                android:gravity="end"/>
+                                android:text="금액:"
+                                android:textSize="16sp"
+                                android:gravity="end"
+                                android:paddingEnd="8dp" />
 
                             <TextView
                                 android:id="@+id/food_ltext04"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:textSize="15sp"
-                                android:text="7,500원" />
-
-                            <TextView
-                                android:id="@+id/food_ltext05"
-                                android:layout_width="82dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="0"
-                                android:layout_marginEnd="10dp"
-                                android:gravity="center_vertical"
-                                android:background="@null"
-                                android:drawableStart="@drawable/drawable_arrow_red_resize"
-                                android:ems="10"
-                                android:inputType="text"
-                                android:text="10%"
-                                android:textColor="@color/red"/>
-
+                                android:text="7,500원"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:paddingEnd="16dp">
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="5dp"
-                                android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/food_ltext07"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="할인된 최종 결제금액:"
+                                android:textSize="16sp"
+                                android:gravity="end"
+                                android:paddingEnd="8dp" />
 
-                                <TextView
-                                    android:id="@+id/food_ltext06"
-                                    android:layout_width="165dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="" />
-
-                                <TextView
-                                    android:id="@+id/food_ltext07"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:textSize="15sp"
-                                    android:text="할인된 최종 결제금액 :" />
-
-                                <TextView
-                                    android:id="@+id/food_ltext08"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginEnd="12dp"
-                                    android:layout_weight="1"
-                                    android:text="750원"
-                                    android:textSize="15sp"/>
-
-                            </LinearLayout>
+                            <TextView
+                                android:id="@+id/food_ltext08"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="750원"
+                                android:textSize="16sp" />
                         </LinearLayout>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </FrameLayout>
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginStart="12dp"
-                android:orientation="vertical"/>
-
+            <!-- 음식점 위치와 운영 시간 및 매장 번호 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:layout_marginTop="18dp"
-                android:orientation="horizontal">
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp">
+
+                <TextView
+                    android:id="@+id/food_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="위치: 서울특별시 노원구 공릉동 123-45"
+                    android:textSize="16sp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/food_opening_hours"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="운영 시간: 오전 10:00 - 오후 9:00"
+                    android:textSize="16sp"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/food_store_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="매장 번호: 02-1234-5678"
+                    android:textSize="16sp"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <!-- 추가 내용: 수량 선택 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="18dp">
 
                 <TextView
                     android:id="@+id/food_ltext14"
@@ -212,42 +209,36 @@
                     android:text="+" />
             </LinearLayout>
 
-
+            <!-- 포장하기 및 매장 식사 버튼 -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="24dp"
                 android:layout_marginBottom="12dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="16dp">
 
                 <Button
                     android:id="@+id/food_lbutton04"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="4dp"
                     android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
                     android:backgroundTint="@color/grey"
-                    android:text="포장 하기"/>
+                    android:text="포장 하기" />
 
                 <Button
                     android:id="@+id/food_lbutton05"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    android:layout_marginEnd="8dp"
                     android:layout_weight="1"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/grey"
-                    android:text="매장 식사"/>
+                    android:text="매장 식사" />
             </LinearLayout>
 
         </LinearLayout>
-
-
-
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

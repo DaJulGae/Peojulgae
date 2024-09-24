@@ -22,6 +22,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.peojulgae.AddmartActivity;
+import com.example.peojulgae.AddmartproductActivity;
 import com.example.peojulgae.AddproductActivity;
 import com.example.peojulgae.AddrestaurantActivity;
 import com.example.peojulgae.CancelPayActivity;
@@ -45,7 +46,7 @@ public class Frag4 extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private Button loginButton, registerButton, logoutButton, addrestaurantButton, addmartButton;
-    private ImageButton addButton, editButton;
+    private ImageButton addButton, editButton, mpaddButton;
     private EditText emailEditText, passwordEditText;
     private ImageView profileImageView, profile_sellerImageView1;
     private LinearLayout loginLayout, buyerLayout, sellerLayout;
@@ -67,6 +68,7 @@ public class Frag4 extends Fragment {
         logoutButton = view.findViewById(R.id.logout_Button);
         addButton = view.findViewById(R.id.add);
         editButton = view.findViewById(R.id.edit);
+        mpaddButton = view.findViewById(R.id.mpadd);
         addrestaurantButton = view.findViewById(R.id.restaurant);
         addmartButton = view.findViewById(R.id.mart);
         loginLayout = view.findViewById(R.id.login_layout);
@@ -101,6 +103,10 @@ public class Frag4 extends Fragment {
 
         editButton.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), ManageFoodActivity.class);
+            startActivity(intent);
+        });
+        mpaddButton.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AddmartproductActivity.class);
             startActivity(intent);
         });
         addrestaurantButton.setOnClickListener(v -> {

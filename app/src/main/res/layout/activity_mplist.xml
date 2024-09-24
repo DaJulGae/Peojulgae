@@ -20,11 +20,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@id/mart_recycler_view" />
+        app:layout_constraintBottom_toTopOf="@id/mplist_recyclerview" />
 
     <!-- RecyclerView를 전체 화면에 표시 -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mart_recycler_view"
+        android:id="@+id/mplist_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -34,6 +34,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:listitem="@layout/item_mart" />
+        tools:listitem="@layout/item_product" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

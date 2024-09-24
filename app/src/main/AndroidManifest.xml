@@ -42,6 +42,12 @@
         <activity android:name=".EditActivity"
             android:exported="false"/>
 
+        <activity android:name=".AddmartproductActivity"
+            android:exported="false"/>
+
+        <activity android:name=".MplistActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

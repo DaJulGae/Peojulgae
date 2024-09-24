@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    card_view:cardCornerRadius="8dp"
+    card_view:cardElevation="4dp"
+    card_view:cardBackgroundColor="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 마트 이미지 -->
+        <ImageView
+            android:id="@+id/mart_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:background="@drawable/round_corner" />
+
+        <!-- 마트 이름 -->
+        <TextView
+            android:id="@+id/mart_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="마트 이름"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <!-- 마트 주소 -->
+        <TextView
+            android:id="@+id/mart_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="마트 주소"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingTop="4dp"
+            android:paddingBottom="8dp" />
+
+        <!-- 영업 시간 -->
+        <TextView
+            android:id="@+id/mart_hours"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="영업 시간"
+            android:textSize="16sp"
+            android:paddingTop="4dp"
+            android:textColor="@color/black"
+            android:paddingBottom="8dp" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
