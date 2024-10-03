@@ -80,7 +80,6 @@ Peojulgae aims to help users find restaurant information and purchase meals at r
  ┣ 📂 app
  ┃ ┣ 📂 src
  ┃ ┃ ┣ 📂 main
- ┃ ┃ ┣ 📂 test
  ┣ 📄 README.md
  ┣ 📄 AndroidManifest.xml
  ┗ 📄 build.gradle
@@ -88,6 +87,3 @@ Peojulgae aims to help users find restaurant information and purchase meals at r
 
 # 프로젝트 클론
 git clone https://github.com/Minu0803/Peojulgae.git
-
-# Android Studio에서 프로젝트 열기
-# 빌드 및 실행
