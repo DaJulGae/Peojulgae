@@ -31,7 +31,6 @@
  ┣ 📂 app
  ┃ ┣ 📂 src
  ┃ ┃ ┣ 📂 main
- ┃ ┃ ┣ 📂 test
  ┣ 📄 README.md
  ┣ 📄 AndroidManifest.xml
  ┗ 📄 build.gradle
