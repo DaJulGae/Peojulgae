@@ -75,4 +75,3 @@
 
 	1.	KakaoMap API Key를 발급받아 AndroidManifest.xml에 추가하세요.
 	2.	BootPay API Key를 발급받아 결제 기능을 설정하세요.
-	3.	Firebase 프로젝트를 생성하고 google-services.json 파일을 Android 프로젝트에 추가하세요.
